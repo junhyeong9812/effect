@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const Body = styled.div`
+  --bg: #29272b;
+  --white: #ffffff;
+  --primary: #32ce9a;
+  --placeholder: #6a666c;
+
+  height: 100vh;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+  background-color: var(--bg);
+`;
+
 const Wrapper = styled.main`
   width: min(325px, 80vw);
   display: grid;
@@ -43,14 +56,6 @@ const Wrapper = styled.main`
     color: var(--placeholder);
     transition: transform 0.5s;
   }
-`;
-
-const Body = styled.div`
-  height: 100vh;
-  height: 100svh;
-  display: grid;
-  place-items: center;
-  background-color: var(--bg);
 `;
 
 const FloatingLabelInput = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const float = keyframes`
@@ -28,32 +28,48 @@ const Bubble = styled.div`
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   animation: ${float} 5s ease-in infinite;
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+  left: ${(props) => props.left}vw;
+  animation-duration: ${(props) => props.duration}s;
 `;
 
 const BubbleComponent = () => {
-  useEffect(() => {
-    function createBubble() {
-      const bubble = document.createElement("div");
-      bubble.classList.add("bubble");
-      let size = Math.random() * 60 + 20 + "px";
-      bubble.style.width = size;
-      bubble.style.height = size;
-      bubble.style.left = Math.random() * 100 + "vw";
-      bubble.style.animationDuration = Math.random() * 3 + 3 + "s";
-      document.body.appendChild(bubble);
-      setTimeout(() => {
-        bubble.remove();
-      }, 5000);
-    }
+  const [bubbles, setBubbles] = useState([]);
 
-    const intervalId = setInterval(createBubble, 500);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const newBubble = {
+        id: Math.random(),
+        size: Math.random() * 60 + 20,
+        left: Math.random() * 100,
+        duration: Math.random() * 3 + 3,
+      };
+      setBubbles((bubbles) => [...bubbles, newBubble]);
+      setTimeout(() => {
+        setBubbles((bubbles) =>
+          bubbles.filter((bubble) => bubble.id !== newBubble.id)
+        );
+      }, 5000);
+    }, 500);
 
     return () => {
       clearInterval(intervalId);
     };
   }, []);
 
-  return <Body />;
+  return (
+    <Body>
+      {bubbles.map((bubble) => (
+        <Bubble
+          key={bubble.id}
+          size={bubble.size}
+          left={bubble.left}
+          duration={bubble.duration}
+        />
+      ))}
+    </Body>
+  );
 };
 
 export default BubbleComponent;

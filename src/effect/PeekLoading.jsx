@@ -11,14 +11,23 @@ const dotAnimationTwo = keyframes`
   5%, 50% { opacity: 0.5; transform: scale(0.5); }
 `;
 
+// const PeeekLoadingContainer = styled.div`
+//   background-color: #000;
+//   overflow: hidden;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   height: 100%;
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
 const PeeekLoadingContainer = styled.div`
   background-color: #000;
   overflow: hidden;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: 100%;
   width: 100%;
   display: flex;

@@ -33,7 +33,11 @@ const RadioInput = styled.input`
     -webkit-transform 0.25s cubic-bezier(0.8, 0, 1, 1);
   outline: none;
 
+  // 초기 상태에서 비어있는 스타일로 설정
+  background-position: 0 24px;
+
   &:checked {
+    background-position: 0 0;
     -webkit-transition: background-position 0.2s 0.15s
         cubic-bezier(0, 0, 0.2, 1),
       -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
@@ -43,35 +47,27 @@ const RadioInput = styled.input`
     -webkit-transform: scale(1.5);
     -webkit-transition: -webkit-transform 0.1s cubic-bezier(0, 0, 0.2, 1);
   }
-
-  &:checked,
-  &:active {
-    background-position: 0 24px;
-  }
-
-  &:checked {
-    background-position: 0 0;
-  }
-
-  &:checked ~ &,
-  &:checked ~ &:active {
-    background-position: 0 -24px;
-  }
 `;
 
 const RadioGroup = () => {
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [selectedValue, setSelectedValue] = useState(null); // 초기값을 null로 설정
+
+  // 임의의 배열 생성
+  const options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"];
 
   return (
     <Body>
-      {[...Array(5)].map((_, index) => (
-        <RadioInput
-          key={index}
-          type="radio"
-          name="name"
-          checked={selectedValue === index}
-          onChange={() => setSelectedValue(index)}
-        />
+      {options.map((option, index) => (
+        <label key={index}>
+          <RadioInput
+            type="radio"
+            name="name"
+            value={option}
+            checked={selectedValue === option}
+            onChange={() => setSelectedValue(option)}
+          />
+          {option}
+        </label>
       ))}
     </Body>
   );
