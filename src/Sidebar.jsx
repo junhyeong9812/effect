@@ -10,6 +10,12 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  overflow-y: auto;
+  /* 웹킷 기반 브라우저에서 스크롤 바의 너비를 0으로 설정하여 보이지 않게 함 */
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 `;
 
 const SidebarLink = styled(Link)`

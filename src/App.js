@@ -26,6 +26,7 @@ import PeekLoading from "./effect/PeekLoading";
 
 const AppContainer = styled.div`
   display: flex;
+  height: "100%";
 `;
 
 const MainContent = styled.div`
